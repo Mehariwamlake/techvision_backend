@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import  Course, CourseProduct, Product, CourseSection, Lesson,Purchase
+from .models import  Candidates, Course, CourseProduct, Product, CourseSection, Lesson,Purchase, Company, Employee, Department
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -46,3 +46,24 @@ class CourseProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = CourseProduct
         fields = ['course', 'product', 'created_at', 'updated_at']
+        
+class CandidatesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Candidates
+        fields = ['id', 'name', 'skills', 'created_at', 'updated_at']
+class CompanySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Company
+        fields = ['id', 'name', 'location' ]
+
+class DepartmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Department
+        fields =['id', 'name', 'companyId']
+        
+        
+class EmployeeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Employee
+        fields = ['id', 'name', 'salary', 'departmentId', 'candidateId']
+        

@@ -182,3 +182,45 @@ class Apply(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+
+class Candidates(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    name = models.TextField(null=False)
+    skills = models.TextField(null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    class Meta:
+        db_table = "Candidates" 
+
+    def __str__(self):
+        return self.name
+    
+class Company(models.Model):
+    id= models.BigAutoField(primary_key=True)
+    name = models.TextField(null=False)
+    location = models.TextField(null=False)
+    class Meta:
+        db_table = 'companys'
+    def __str__(self):
+        return self.name
+    
+class Department(models.Model):
+    id= models.BigAutoField(primary_key=True)
+    name = models.TextField(null=False)
+    companyId = models.ForeignKey(Company, on_delete=models.RESTRICT, related_name="departments")
+    class Meta:
+        db_table = "departments"
+    def __str__(self):
+        return self.name
+    
+class Employee(models.Model):
+    id= models.BigAutoField(primary_key=True)
+    name = models.TextField(null=True)
+    salary = models.TextField(null=True)
+    departmentId = models.ForeignKey(Department, on_delete=models.RESTRICT, related_name="employees", null=True)
+    candidateId = models.ForeignKey(Candidates, on_delete=models.RESTRICT, related_name='candidates', null=True)
+    class Meta:
+        db_table = "employees"
+    
+    def __str__(self):
+        return self.name

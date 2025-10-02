@@ -4,7 +4,7 @@ from .lesson_views import LessonViewSet
 from .product_views import ProductViewSet
 from .purchase_view import PurchaseViewSet
 from .user_views import CreateUserView
-
+from .department_views import DepartmentViewSet
 
 __all__ = [ "CourseViewSet",
             "CourseSectionViewSet",
@@ -13,4 +13,5 @@ __all__ = [ "CourseViewSet",
             "CourseListView",
             "PurchaseViewSet",
             "CreateUserView",
+            "DepartmentViewSet"
             ]
